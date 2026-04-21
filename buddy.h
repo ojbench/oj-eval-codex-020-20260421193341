@@ -8,10 +8,10 @@
 
 
 #define IS_ERR_VALUE(x) ((x) >= (unsigned long)-MAX_ERRNO)
-static inline void *ERR_PTR(long error) { return (void *)error; }
-// Accept both pointer and integer error codes by using long parameter types
-static inline long PTR_ERR(long v) { return v; }
-static inline long IS_ERR(long v) { return IS_ERR_VALUE((unsigned long)v); }
+// Macros accept both pointers and ints without prototype conversion warnings
+#define ERR_PTR(error) ((void *)(long)(error))
+#define PTR_ERR(x) ((long)(x))
+#define IS_ERR(x) IS_ERR_VALUE((unsigned long)(x))
 
 
 int init_page(void *p, int pgcount);
