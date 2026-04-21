@@ -1,3 +1,6 @@
-.PHONY: all
+.PHONY: all clean
 all:
-	gcc -o test main.c buddy.c
+	gcc -O2 -std=gnu11 -o code main.c buddy.c
+
+clean:
+	rm -f code
